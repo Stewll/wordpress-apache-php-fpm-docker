@@ -1,0 +1,6 @@
+# Do not copy .htaccess file
+.htaccess
+
+# Do not commit the .vscode folder
+# .vscode folder is used for local development
+.vscode
