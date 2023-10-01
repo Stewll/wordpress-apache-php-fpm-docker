@@ -1,0 +1,29 @@
+
+# BEGIN WordPress
+# The directives (lines) between "BEGIN WordPress" and "END WordPress" are
+# dynamically generated, and should only be modified via WordPress filters.
+# Any changes to the directives between these markers will be overwritten.
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
+RewriteBase /
+RewriteRule ^index\.php$ - [L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . /index.php [L]
+</IfModule>
+
+# END WordPress
+# Use the php7 container for all php files
+
+#<FilesMatch \.php$>
+#SetHandler "proxy:fcgi://php8:9000"
+#</FilesMatch>
+
+# acl rules to allow access to the site from 10.61.0.0/16
+#acl 10.61.0.0/16 src
+#http_access allow
+
+# Disable caching
+# header_access Cache-Control deny all
+# header_access Pragma deny all
