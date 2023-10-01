@@ -1,6 +1,8 @@
-# Load the apache2 proxys module
-a2enmod proxy
-a2enmod proxy_fcgi
+# disable the apache2 cache module
+a2dismod cache
+# Disable the apache2 cache for the proxy module
+a2dismod cache_disk
+# Disable the apache2 cache for the proxy module
 
 # Load our virtual host config
 a2ensite 000-default.conf
