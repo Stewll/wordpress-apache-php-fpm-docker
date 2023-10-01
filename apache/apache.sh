@@ -3,7 +3,7 @@ a2enmod proxy
 a2enmod proxy_fcgi
 
 # Load our virtual host config
-a2ensite 000-init.test
+a2ensite 000-default.conf
 
 # Reload apache2
 service apache2 reload
