@@ -11,34 +11,25 @@ services:
     environment:
       - MYSQL_HOST=mysql
       - MYSQL_DATABASE=${MYSQL_DATABASE}
-      - MYSQL_USER=${MYSQL_USER}
-      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+      - MYSQL_USER=${MYSQL_ROOT_USER}
+      - MYSQL_PASSWORD=${MYSQL_ROOT_PASSWORD}
       - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
       
     ports:
-      - 880:80
+      - 80:80
     depends_on:
-      - php7
       - php8
       - mysql
 
-  php7:
-    restart: unless-stopped
-    hostname: php7
-    build: php7
-    volumes:
-      - ./data/wordpress:/var/www/html
-    depends_on:
-      - mysql
   php8:
     restart: unless-stopped
-    hostname: php7
+    hostname: php8
     build: php8
     volumes:
       - ./data/wordpress:/var/www/html
     depends_on:
       - mysql
-
+  
   mysql:
     hostname: mysql
     image: mysql:5.7

@@ -1,4 +1,4 @@
-FROM wordpress:latest
+FROM wordpress:php7.4-apache
 # Set umask to 0000 to allow write access to mounted volumes
 RUN umask 0000
 

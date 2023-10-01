@@ -1,4 +1,4 @@
-FROM wordpress:php8.2-fpm
+FROM wordpress:php8.0-fpm 
 
 # Put the idea of permition into the trash
 # make all newly created files and directories world-writable
