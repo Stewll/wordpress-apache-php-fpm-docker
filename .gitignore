@@ -1,1 +1,13 @@
-.idea/
+# Do not commit .env file
+# .env file is used for local development
+.env
+
+# Do not commit the data folders
+# Data folders are used for local development
+data/wordpress
+data/mysql
+
+
+# Do not commit the .vscode folder
+# .vscode folder is used for local development
+.vscode

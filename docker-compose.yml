@@ -2,31 +2,36 @@ version: "3.7"
 
 services:
   apache:
+    restart: unless-stopped
     hostname: apache
     build: apache
     volumes:
-      - ./app/wordpress:/var/www/html
+      - ./data/wordpress:/var/www/html
+      - ./apache/sites-available:/etc/apache2/sites-available
     ports:
       - 880:80
     depends_on:
-      - wordpress
-  wordpress:
-    hostname: wordpress
-    build: wordpress
+      - php7
+      - php8
+      - mysql
+
+  php7:
+    restart: unless-stopped
+    hostname: php7
+    build: php7
     volumes:
-      - ./app/wordpress:/var/www/html
-    ports:
-      - 9000:9000
+      - ./data/wordpress:/var/www/html
     depends_on:
       - mysql
-    environment:
-      WORDPRESS_DB_HOST: mysql:3306
-      WORDPRESS_DB_USER: wordpress
-      WORDPRESS_DB_PASSWORD: wordpress
-      WORDPRESS_DB_NAME: wordpress
-      WP_DEBUG: 1
-      LIVE_URL: https://live.localhost
-      DEV_URL: http://dev.localhost
+  php8:
+    restart: unless-stopped
+    hostname: php7
+    build: php8
+    volumes:
+      - ./data/wordpress:/var/www/html
+    depends_on:
+      - mysql
+
   mysql:
     hostname: mysql
     image: mysql:5.7
@@ -38,10 +43,12 @@ services:
       '--collation-server=utf8mb4_unicode_ci'
     ]
     volumes:
-      - ./app/mysql:/var/lib/mysql
+      - ./data/mysql:/var/lib/mysql
     environment:
-      MYSQL_ROOT_PASSWORD: wordpress
-      MYSQL_DATABASE: wordpress
-      MYSQL_USER: wordpress
-      MYSQL_PASSWORD: wordpress
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      restart: unless-stopped
+
 

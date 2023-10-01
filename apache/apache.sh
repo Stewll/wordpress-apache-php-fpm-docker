@@ -1,15 +1,12 @@
+# Load the apache2 proxys module
 a2enmod proxy
 a2enmod proxy_fcgi
-a2enmod proxy_html
-a2enmod headers
-a2enmod vhost_alias
-a2enmod rewrite
-a2enmod ssl
-a2enmod setenvif
-a2enmod http2
-a2dismod mpm_prefork
-a2enmod mpm_event
-a2enconf php7.2-fpm
+
+# Load our virtual host config
 a2ensite 000-init.test
 
+# Reload apache2
+service apache2 reload
+
+# Start apache2
 /usr/sbin/apache2ctl -D FOREGROUND
