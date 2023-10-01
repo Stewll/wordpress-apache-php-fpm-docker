@@ -8,6 +8,13 @@ services:
     volumes:
       - ./data/wordpress:/var/www/html
       - ./apache/sites-available:/etc/apache2/sites-available
+    environment:
+      - MYSQL_HOST=mysql
+      - MYSQL_DATABASE=${MYSQL_DATABASE}
+      - MYSQL_USER=${MYSQL_USER}
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+      
     ports:
       - 880:80
     depends_on:
