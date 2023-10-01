@@ -6,6 +6,10 @@
 # Data folders are used for local development
 
 data/mysql
+data/wordpress/Site1
+data/wordpress/Site2
+data/wordpress/wordpress
+
 
 
 # Do not commit the .vscode folder
