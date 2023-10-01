@@ -6,7 +6,7 @@ services:
     hostname: apache
     build: apache
     volumes:
-      - ./data/wordpress:/var/www/html
+      - ./data/wordpress:/var/www/html:rw
       - ./apache/sites-available:/etc/apache2/sites-available
     environment:
       - MYSQL_HOST=mysql
@@ -26,7 +26,7 @@ services:
     hostname: php8
     build: php8
     volumes:
-      - ./data/wordpress:/var/www/html
+      - ./data/wordpress:/var/www/html:rw
     depends_on:
       - mysql
   
