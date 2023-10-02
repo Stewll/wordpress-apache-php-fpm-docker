@@ -14,6 +14,19 @@ RUN apt-get -y autoremove && \
 # Remove cache 
 RUN rm -fr /var/lib/caches/* && \
     rm -fr /usr/share/doc/*
+#Copy the developement version of php.ini to php.ini
+COPY  /usr/local/etc/php/php.ini-development /usr/local/etc/php/php.ini
+
+# Raise the max upload size to 2000MB
+RUN sed -i 's/upload_max_filesize = 2M/upload_max_filesize = 2000M/g' /usr/local/etc/php/php.ini
+# Raise the max post size to 2000MB
+RUN sed -i 's/post_max_size = 8M/post_max_size = 2000M/g' /usr/local/etc/php/php.ini
+# Raise the max execution time to 600 seconds
+RUN sed -i 's/max_execution_time = 30/max_execution_time = 600/g' /usr/local/etc/php/php.ini
+# Raise the max input time to 600 seconds
+RUN sed -i 's/max_input_time = 60/max_input_time = 600/g' /usr/local/etc/php/php.ini
+# 
+
 
 # Add our custom apache2.conf file
 ADD apache2.conf /etc/apache2/apache2.conf
