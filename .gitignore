@@ -8,7 +8,7 @@
 data/mysql
 
 # Exclude only the subfolders of the data/wordpress folder; Include the files in the data folder
-data/wordpress/*
+data/wordpress
 
 
 # Do not commit the .vscode folder
