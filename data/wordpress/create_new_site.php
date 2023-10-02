@@ -93,6 +93,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <!--Create a header-->
 <header>
     <h1>Create a New WordPress Site</h1>
+    <!-- Header style menu with links to PhpMyAdmin and Home page next one to another -->
+    <div class="menu">
+        <a href="http://localhost:881">PhpMyAdmin</a>
+        <a href="http://localhost">Home</a>
 </header>
 <!--Create the form with CSS styles and JavaScript for background color change-->
 <form class="container" action="create_new_site.php" method="post" id="siteForm">
