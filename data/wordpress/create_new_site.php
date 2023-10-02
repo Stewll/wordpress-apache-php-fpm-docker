@@ -79,71 +79,46 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             file_put_contents("$site_name/.htaccess", $htaccess_content, FILE_APPEND);
         }
-        // Redirect the user to the success page but don't send the password
-        header("Location: success.php?site_name=$site_name&db_name=$db_name&db_user=$db_user&db_host=$db_host");
-
-        
+        /* Redirect the user to the success page but don't send the password. Send everything else.
+        // the following will be send: site_name, db_name, db_user, db_host, php_version */
+        header("Location: success.php?site_name=$site_name&db_name=$db_name&db_user=$db_user&db_host=$db_host&php_version=$php_version");
+     
     }
 }
 ?>
-<!--Create a sexy form to get the PHP version and site name
-    First, a little bit of CSS to make it look nice-->
-<style>
-    body {
-        font-family: Arial, sans-serif;
-        text-align: center;
-        background-color: #f0f0f0;
-    }
-    form {
-        max-width: 600px;
-        margin: 0 auto;
-        padding: 20px;
-        background-color: #fff;
-        border-radius: 5px;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-    }
-    label {
-        display: block;
-        margin-bottom: 10px;
-        font-weight: bold;
-    }
-    input[type=text] {
-        width: 100%;
-        padding: 10px;
-        border-radius: 5px;
-        border: 1px solid #ccc;
-        margin-bottom: 20px;
-    }
-    input[type=submit] {
-        padding: 10px 20px;
-        border-radius: 5px;
-        border: 1px solid #007BFF;
-        background-color: #007BFF;
-        color: #fff;
-        font-weight: bold;
-    }
-    input[type=submit]:hover {
-        cursor: pointer;
-        background-color: #0069D9;
-    }
-</style>
-<!--Create a sexy header-->
+
+<!-- Link to the CSS file -->
+<link rel="stylesheet" href="style.css">
+
+<!--Create a header-->
 <header>
     <h1>Create a New WordPress Site</h1>
 </header>
-<!--Create the form, using those sexy CSS styles -->
-<form method="POST">
-    <label for="php_version">PHP Version</label>
-    <select name="php_version" id="php_version">
+<!--Create the form with CSS styles and JavaScript for background color change-->
+<form class="container" action="create_new_site.php" method="post" id="siteForm">
+    <label for="site_name">Site Name:</label>
+    <input type="text" id="site_name" name="site_name" required><br>
+    <label for="php_version">PHP Version:</label>
+    <select id="php_version" name="php_version">
         <option value="7">7</option>
         <option value="8">8</option>
-    </select>
-    <label for="site_name">Site Name</label>
-    <input type="text" name="site_name" id="site_name" placeholder="Site Name">
-    <input type="submit" value="Create Site">
+    </select><br>
+    <input type="submit" value="Submit" id="submitButton">
 </form>
-<!--Create a sexy footer-->
+
+<script>
+// JavaScript to change the background color when the submit button is clicked
+document.getElementById("siteForm").addEventListener("submit", function() {
+    document.getElementById("siteForm").style.backgroundColor = "yellow";
+});
+
+// JavaScript to reset the background color when the form is reloaded
+window.addEventListener("load", function() {
+    document.getElementById("siteForm").style.backgroundColor = "<?php echo $_SERVER['REQUEST_METHOD'] === 'POST' ? 'yellow' : 'white'; ?>";
+});
+</script>
+
+    <!--Create a sexy footer-->
 <footer>
     <!-- feet are sexy, right? -->
-    <p>footer text</p>
 </footer>
