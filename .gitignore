@@ -6,10 +6,10 @@
 # Data folders are used for local development
 
 data/mysql
-data/wordpress/Site1
-data/wordpress/Site2
-data/wordpress/wordpress
 
+# Exclude only the subfolders of the data/wordpress folder; Include the files in the data folder
+ data/wordpress/*/*
+ 
 
 
 # Do not commit the .vscode folder
