@@ -1,1 +1,5 @@
 !.gitignore
+!data/wordpress/style.css
+!data/wordpress/creat_new_site.php
+!data/wordpress/index.php
+!data/wordpress/success.php
